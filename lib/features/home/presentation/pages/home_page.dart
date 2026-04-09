@@ -32,14 +32,17 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Subjects'), centerTitle: true),
       body: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         itemCount: subjects.length,
         itemBuilder: (context, index) {
           final subject = subjects[index];
-          return SubjectCard(
-            iconName: subject.icon,
-            title: subject.title,
-            description: subject.description,
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 14),
+            child: SubjectCard(
+              iconName: subject.icon,
+              title: subject.title,
+              description: subject.description,
+            ),
           );
         },
       ),
@@ -62,14 +65,33 @@ class SubjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customColors = Theme.of(context).extension<AppCustomColors>()!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       decoration: BoxDecoration(
-        color: customColors.subjectCardBackground,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            customColors.subjectCardBackground.withOpacity(isDark ? 0.96 : 1),
+            customColors.subjectCardIconStart.withOpacity(isDark ? 0.20 : 0.10),
+            customColors.subjectCardIconEnd.withOpacity(isDark ? 0.14 : 0.06),
+          ],
+          stops: const [0.0, 0.6, 1.0],
+        ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: customColors.subjectCardBorder),
+        boxShadow: [
+          BoxShadow(
+            color: customColors.subjectCardIconStart.withOpacity(
+              isDark ? 0.14 : 0.08,
+            ),
+            blurRadius: 18,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -94,23 +116,23 @@ class SubjectCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 14),
+          const SizedBox(height: 16),
           Text(
             title,
             style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
+              fontSize: 17,
+              fontWeight: FontWeight.w800,
               color: customColors.subjectCardTitle,
             ),
           ),
 
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
 
           Text(
             description,
             style: TextStyle(
-              fontSize: 12,
-              height: 1.4,
+              fontSize: 13,
+              height: 1.5,
               color: customColors.subjectCardDescription,
             ),
           ),

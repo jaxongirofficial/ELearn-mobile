@@ -70,14 +70,16 @@ class AppColors {
 
   static List<Color> primaryGradientForBrightness(Brightness brightness) {
     if (brightness == Brightness.dark) {
-      return onboardingHeroDarkGradient;
+      return const [Color(0xFF60A5FA), Color(0xFF2563EB)];
     }
 
     return const [primaryBlue, primaryTeal];
   }
 
   static Color primaryGlowForBrightness(Brightness brightness) {
-    return brightness == Brightness.dark ? primaryAmber : primaryBlue;
+    return brightness == Brightness.dark
+        ? const Color(0xFF60A5FA)
+        : primaryBlue;
   }
 
   static List<Color> onboardingBackgroundGradientForBrightness(
