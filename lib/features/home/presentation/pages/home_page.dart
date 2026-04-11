@@ -1,140 +1,126 @@
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 
+typedef _SubjectSection =
+    ({
+      String title,
+    });
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  static final List<_SubjectSection> _sections = [
+    (
+      title: 'Mathematics',
+    ),
+    (
+      title: 'Physics',
+    ),
+    (
+      title: 'Chemistry',
+    ),
+    (
+      title: 'Biology',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final subjects = <({IconData icon, String title, String description})>[
-      (
-        icon: Icons.calculate_rounded,
-        title: 'Mathematics',
-        description: 'Numbers, equations, and problem solving',
-      ),
-      (
-        icon: Icons.science_rounded,
-        title: 'Physics',
-        description: 'Motion, energy, force, and the universe',
-      ),
-      (
-        icon: Icons.biotech_rounded,
-        title: 'Chemistry',
-        description: 'Atoms, reactions, formulas, and matter',
-      ),
-      (
-        icon: Icons.eco_rounded,
-        title: 'Biology',
-        description: 'Living organisms, cells, and life systems',
-      ),
-    ];
+    final theme = Theme.of(context);
+    final backgroundColor = theme.colorScheme.background;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Subjects'), centerTitle: true),
-      body: ListView.builder(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-        itemCount: subjects.length,
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        title: const Text('Subjects'),
+        centerTitle: true,
+        backgroundColor: backgroundColor,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: ListView.separated(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+        itemCount: _sections.length,
+        separatorBuilder: (_, __) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
-          final subject = subjects[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: SubjectCard(
-              iconName: subject.icon,
-              title: subject.title,
-              description: subject.description,
-            ),
-          );
+          final section = _sections[index];
+          return _SubjectSectionBlock(section: section);
         },
       ),
     );
   }
 }
 
-class SubjectCard extends StatelessWidget {
-  final IconData iconName;
-  final String title;
-  final String description;
+class _SubjectSectionBlock extends StatelessWidget {
+  const _SubjectSectionBlock({required this.section});
 
-  const SubjectCard({
-    super.key,
-    required this.iconName,
-    required this.title,
-    required this.description,
-  });
+  final _SubjectSection section;
 
   @override
   Widget build(BuildContext context) {
-    final customColors = Theme.of(context).extension<AppCustomColors>()!;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppCustomColors>()!;
 
-    return Container(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 2, bottom: 12),
+          child: Text(
+            section.title,
+            style: TextStyle(
+              fontSize: 20,
+              color: colors.subjectCardTitle,
+            ),
+          ),
+        ),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 6,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            childAspectRatio: 1.02,
+          ),
+          itemBuilder: (context, index) {
+            return const _SubjectGridCard();
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class _SubjectGridCard extends StatelessWidget {
+  const _SubjectGridCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppCustomColors>()!;
+    final isDark = theme.brightness == Brightness.dark;
+
+    return DecoratedBox(
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            customColors.subjectCardBackground.withOpacity(isDark ? 0.96 : 1),
-            customColors.subjectCardIconStart.withOpacity(isDark ? 0.20 : 0.10),
-            customColors.subjectCardIconEnd.withOpacity(isDark ? 0.14 : 0.06),
+            colors.subjectCardIconStart.withOpacity(isDark ? 0.68 : 0.76),
+            colors.subjectCardIconEnd.withOpacity(isDark ? 0.82 : 0.9),
           ],
-          stops: const [0.0, 0.6, 1.0],
         ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: customColors.subjectCardBorder),
+        border: Border.all(
+          color: colors.subjectCardBorder.withOpacity(isDark ? 0.45 : 0.7),
+        ),
         boxShadow: [
           BoxShadow(
-            color: customColors.subjectCardIconStart.withOpacity(
-              isDark ? 0.14 : 0.08,
-            ),
-            blurRadius: 18,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(18),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 46,
-            width: 46,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              gradient: LinearGradient(
-                colors: [
-                  customColors.subjectCardIconStart,
-                  customColors.subjectCardIconEnd,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Icon(
-              iconName,
-              color: customColors.subjectCardIconForeground,
-              size: 24,
-            ),
-          ),
-
-          const SizedBox(height: 16),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w800,
-              color: customColors.subjectCardTitle,
-            ),
-          ),
-
-          const SizedBox(height: 8),
-
-          Text(
-            description,
-            style: TextStyle(
-              fontSize: 13,
-              height: 1.5,
-              color: customColors.subjectCardDescription,
-            ),
+            color: colors.subjectCardIconEnd.withOpacity(isDark ? 0.14 : 0.1),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
           ),
         ],
       ),

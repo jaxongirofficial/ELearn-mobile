@@ -1,3 +1,4 @@
+import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:elearn_mobile/features/calculator/presentation/calculator_page.dart';
 import 'package:elearn_mobile/features/favourites/presentation/pages/favourites_page.dart';
 import 'package:elearn_mobile/features/home/presentation/pages/home_page.dart';
@@ -14,11 +15,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  static const _selectedColor = Color(0xFF2563EB);
-  static const _unselectedColor = Color(0xFF94A3B8);
   static const _labelStyle = TextStyle(
     fontSize: 12,
-    fontWeight: FontWeight.w600,
   );
 
   int _currentIndex = 0;
@@ -31,7 +29,12 @@ class _MainScreenState extends State<MainScreen> {
     ProfilePage(),
   ];
 
-  Widget _navSvgIcon(String assetPath, int index) {
+  Widget _navSvgIcon(
+    String assetPath,
+    int index,
+    Color selectedColor,
+    Color unselectedColor,
+  ) {
     final isSelected = _currentIndex == index;
 
     return SvgPicture.asset(
@@ -39,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
       width: 22,
       height: 22,
       colorFilter: ColorFilter.mode(
-        isSelected ? _selectedColor : _unselectedColor,
+        isSelected ? selectedColor : unselectedColor,
         BlendMode.srcIn,
       ),
     );
@@ -47,13 +50,20 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: _pages),
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppCustomColors>()!;
+    final backgroundColor = theme.colorScheme.background;
+    final selectedColor = colors.subjectCardIconStart;
+    final unselectedColor = colors.description;
 
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      body: IndexedStack(index: _currentIndex, children: _pages),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: backgroundColor,
         currentIndex: _currentIndex,
-        selectedItemColor: _selectedColor,
-        unselectedItemColor: _unselectedColor,
+        selectedItemColor: selectedColor,
+        unselectedItemColor: unselectedColor,
         selectedFontSize: 12,
         unselectedFontSize: 12,
         selectedLabelStyle: _labelStyle,
@@ -63,28 +73,51 @@ class _MainScreenState extends State<MainScreen> {
             _currentIndex = index;
           });
         },
-
         type: BottomNavigationBarType.fixed,
-
         items: [
           BottomNavigationBarItem(
-            icon: _navSvgIcon('assets/icons/home.svg', 0),
+            icon: _navSvgIcon(
+              'assets/icons/home.svg',
+              0,
+              selectedColor,
+              unselectedColor,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: _navSvgIcon('assets/icons/library.svg', 1),
+            icon: _navSvgIcon(
+              'assets/icons/library.svg',
+              1,
+              selectedColor,
+              unselectedColor,
+            ),
             label: 'Library',
           ),
           BottomNavigationBarItem(
-            icon: _navSvgIcon('assets/icons/calculator.svg', 2),
+            icon: _navSvgIcon(
+              'assets/icons/calculator.svg',
+              2,
+              selectedColor,
+              unselectedColor,
+            ),
             label: 'Calculator',
           ),
           BottomNavigationBarItem(
-            icon: _navSvgIcon('assets/icons/favorite.svg', 3),
+            icon: _navSvgIcon(
+              'assets/icons/favorite.svg',
+              3,
+              selectedColor,
+              unselectedColor,
+            ),
             label: 'Favourites',
           ),
           BottomNavigationBarItem(
-            icon: _navSvgIcon('assets/icons/person.svg', 4),
+            icon: _navSvgIcon(
+              'assets/icons/person.svg',
+              4,
+              selectedColor,
+              unselectedColor,
+            ),
             label: 'Profile',
           ),
         ],

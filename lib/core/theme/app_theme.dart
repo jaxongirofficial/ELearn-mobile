@@ -19,6 +19,13 @@ class AppTheme {
       error: AppColors.error,
       onError: Colors.white,
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.n0,
+      foregroundColor: AppColors.n900,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      centerTitle: true,
+    ),
     textTheme: AppTextTheme.light,
     extensions: [
       AppCustomColors(
@@ -51,6 +58,13 @@ class AppTheme {
       onSurface: AppColors.dn900,
       error: AppColors.error,
       onError: Colors.black,
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.dn0,
+      foregroundColor: AppColors.dn900,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      centerTitle: true,
     ),
     textTheme: AppTextTheme.dark,
     extensions: [
