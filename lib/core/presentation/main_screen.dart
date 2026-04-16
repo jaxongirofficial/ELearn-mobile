@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
     final theme = Theme.of(context);
     final colors = theme.extension<AppCustomColors>()!;
     final backgroundColor = theme.colorScheme.background;
-    final selectedColor = colors.subjectCardIconStart;
+    final selectedColor = colors.mathematicsPalette.start;
     final unselectedColor = colors.description;
 
     return Scaffold(

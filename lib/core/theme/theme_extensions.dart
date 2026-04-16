@@ -1,18 +1,57 @@
 import 'package:flutter/material.dart';
 
 @immutable
+class SubjectPalette {
+  const SubjectPalette({
+    required this.start,
+    required this.end,
+    required this.foreground,
+    required this.shadow,
+  });
+
+  final Color start;
+  final Color end;
+  final Color foreground;
+  final Color shadow;
+
+  SubjectPalette copyWith({
+    Color? start,
+    Color? end,
+    Color? foreground,
+    Color? shadow,
+  }) {
+    return SubjectPalette(
+      start: start ?? this.start,
+      end: end ?? this.end,
+      foreground: foreground ?? this.foreground,
+      shadow: shadow ?? this.shadow,
+    );
+  }
+
+  static SubjectPalette lerp(SubjectPalette a, SubjectPalette b, double t) {
+    return SubjectPalette(
+      start: Color.lerp(a.start, b.start, t)!,
+      end: Color.lerp(a.end, b.end, t)!,
+      foreground: Color.lerp(a.foreground, b.foreground, t)!,
+      shadow: Color.lerp(a.shadow, b.shadow, t)!,
+    );
+  }
+}
+
+@immutable
 class AppCustomColors extends ThemeExtension<AppCustomColors> {
-  final Color description; 
+  final Color description;
   final Color cardBorder;
-  final Color divider; 
+  final Color divider;
   final Color placeholder;
   final Color subjectCardBackground;
   final Color subjectCardBorder;
   final Color subjectCardTitle;
   final Color subjectCardDescription;
-  final Color subjectCardIconStart;
-  final Color subjectCardIconEnd;
-  final Color subjectCardIconForeground;
+  final SubjectPalette mathematicsPalette;
+  final SubjectPalette physicsPalette;
+  final SubjectPalette chemistryPalette;
+  final SubjectPalette biologyPalette;
 
   const AppCustomColors({
     required this.description,
@@ -23,9 +62,10 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     required this.subjectCardBorder,
     required this.subjectCardTitle,
     required this.subjectCardDescription,
-    required this.subjectCardIconStart,
-    required this.subjectCardIconEnd,
-    required this.subjectCardIconForeground,
+    required this.mathematicsPalette,
+    required this.physicsPalette,
+    required this.chemistryPalette,
+    required this.biologyPalette,
   });
 
   @override
@@ -38,9 +78,10 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     Color? subjectCardBorder,
     Color? subjectCardTitle,
     Color? subjectCardDescription,
-    Color? subjectCardIconStart,
-    Color? subjectCardIconEnd,
-    Color? subjectCardIconForeground,
+    SubjectPalette? mathematicsPalette,
+    SubjectPalette? physicsPalette,
+    SubjectPalette? chemistryPalette,
+    SubjectPalette? biologyPalette,
   }) {
     return AppCustomColors(
       description: description ?? this.description,
@@ -53,10 +94,10 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
       subjectCardTitle: subjectCardTitle ?? this.subjectCardTitle,
       subjectCardDescription:
           subjectCardDescription ?? this.subjectCardDescription,
-      subjectCardIconStart: subjectCardIconStart ?? this.subjectCardIconStart,
-      subjectCardIconEnd: subjectCardIconEnd ?? this.subjectCardIconEnd,
-      subjectCardIconForeground:
-          subjectCardIconForeground ?? this.subjectCardIconForeground,
+      mathematicsPalette: mathematicsPalette ?? this.mathematicsPalette,
+      physicsPalette: physicsPalette ?? this.physicsPalette,
+      chemistryPalette: chemistryPalette ?? this.chemistryPalette,
+      biologyPalette: biologyPalette ?? this.biologyPalette,
     );
   }
 
@@ -76,15 +117,26 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
           Color.lerp(subjectCardTitle, other.subjectCardTitle, t)!,
       subjectCardDescription:
           Color.lerp(subjectCardDescription, other.subjectCardDescription, t)!,
-      subjectCardIconStart:
-          Color.lerp(subjectCardIconStart, other.subjectCardIconStart, t)!,
-      subjectCardIconEnd:
-          Color.lerp(subjectCardIconEnd, other.subjectCardIconEnd, t)!,
-      subjectCardIconForeground: Color.lerp(
-        subjectCardIconForeground,
-        other.subjectCardIconForeground,
+      mathematicsPalette: SubjectPalette.lerp(
+        mathematicsPalette,
+        other.mathematicsPalette,
         t,
-      )!,
+      ),
+      physicsPalette: SubjectPalette.lerp(
+        physicsPalette,
+        other.physicsPalette,
+        t,
+      ),
+      chemistryPalette: SubjectPalette.lerp(
+        chemistryPalette,
+        other.chemistryPalette,
+        t,
+      ),
+      biologyPalette: SubjectPalette.lerp(
+        biologyPalette,
+        other.biologyPalette,
+        t,
+      ),
     );
   }
 }
