@@ -11,51 +11,39 @@ class HomePage extends StatelessWidget {
       title: 'Mathematics',
       icon: Icons.calculate_rounded,
       topics: [
-        SubjectTopic(title: 'Algebra', subtitle: 'Formulas and equations'),
-        SubjectTopic(title: 'Geometry', subtitle: 'Shapes and angles'),
-        SubjectTopic(title: 'Calculus', subtitle: 'Limits and derivatives'),
-        SubjectTopic(title: 'Trigonometry', subtitle: 'Sin, cos and tan'),
-        SubjectTopic(title: 'Statistics', subtitle: 'Data and probability'),
-        SubjectTopic(title: 'Arithmetic', subtitle: 'Core number skills'),
-      ],
-    ),
-    SubjectSection(
-      type: SubjectType.physics,
-      title: 'Physics',
-      icon: Icons.bolt_rounded,
-      topics: [
-        SubjectTopic(title: 'Mechanics', subtitle: 'Motion and force'),
-        SubjectTopic(title: 'Optics', subtitle: 'Light and lenses'),
-        SubjectTopic(title: 'Electricity', subtitle: 'Current and circuits'),
-        SubjectTopic(title: 'Magnetism', subtitle: 'Fields and induction'),
-        SubjectTopic(title: 'Thermodynamics', subtitle: 'Heat and energy'),
-        SubjectTopic(title: 'Waves', subtitle: 'Sound and vibrations'),
-      ],
-    ),
-    SubjectSection(
-      type: SubjectType.chemistry,
-      title: 'Chemistry',
-      icon: Icons.science_rounded,
-      topics: [
-        SubjectTopic(title: 'Atoms', subtitle: 'Structure of matter'),
-        SubjectTopic(title: 'Reactions', subtitle: 'Changes and balance'),
-        SubjectTopic(title: 'Organic', subtitle: 'Carbon compounds'),
-        SubjectTopic(title: 'Solutions', subtitle: 'Mixing and solvents'),
-        SubjectTopic(title: 'Acids & Bases', subtitle: 'pH and neutralization'),
-        SubjectTopic(title: 'Periodic Table', subtitle: 'Elements and groups'),
-      ],
-    ),
-    SubjectSection(
-      type: SubjectType.biology,
-      title: 'Biology',
-      icon: Icons.eco_rounded,
-      topics: [
-        SubjectTopic(title: 'Cell Biology', subtitle: 'Cell structure'),
-        SubjectTopic(title: 'Botany', subtitle: 'Plants and growth'),
-        SubjectTopic(title: 'Zoology', subtitle: 'Animals and systems'),
-        SubjectTopic(title: 'Genetics', subtitle: 'DNA and heredity'),
-        SubjectTopic(title: 'Ecology', subtitle: 'Nature and balance'),
-        SubjectTopic(title: 'Human Body', subtitle: 'Organs and functions'),
+        SubjectTopic(
+          title: 'Sonlar va arifmetika asoslari',
+          subtitle: 'Formulas and equations',
+        ),
+        SubjectTopic(
+          title: 'Algebraik ifodalar va formulalar',
+          subtitle: 'Shapes and angles',
+        ),
+        SubjectTopic(
+          title: 'Tenglamalar va tengsizliklar (boshlang‘ich)',
+          subtitle: 'Limits and derivatives',
+        ),
+        SubjectTopic(
+          title: 'Funksiya va grafiklar',
+          subtitle: 'Sin, cos and tan',
+        ),
+        SubjectTopic(
+          title: 'Darajalar va ildizlar',
+          subtitle: 'Data and probability',
+        ),
+        SubjectTopic(
+          title: 'Kvadrat tenglamalar va teoremalar',
+          subtitle: 'Core number skills',
+        ),
+        SubjectTopic(
+          title: 'Murakkab tenglamalar va ifodalar',
+          subtitle: 'Core number skills',
+        ),
+        SubjectTopic(
+          title: 'Logarifmlar va ko‘rsatkichli tenglamalar',
+          subtitle: 'Core number skills',
+        ),
+        SubjectTopic(title: 'Progressiyalar', subtitle: 'Core number skills'),
       ],
     ),
   ];
@@ -133,10 +121,7 @@ class _SubjectSectionBlock extends StatelessWidget {
 }
 
 class _SubjectGridCard extends StatelessWidget {
-  const _SubjectGridCard({
-    required this.section,
-    required this.topic,
-  });
+  const _SubjectGridCard({required this.section, required this.topic});
 
   final SubjectSection section;
   final SubjectTopic topic;
@@ -177,11 +162,7 @@ class _SubjectGridCard extends StatelessWidget {
               ],
             ),
             child: Center(
-              child: Icon(
-                section.icon,
-                size: 28,
-                color: palette.foreground,
-              ),
+              child: Icon(section.icon, size: 28, color: palette.foreground),
             ),
           ),
         ),
