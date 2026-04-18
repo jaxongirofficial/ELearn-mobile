@@ -11,39 +11,15 @@ class HomePage extends StatelessWidget {
       title: 'Mathematics',
       icon: Icons.calculate_rounded,
       topics: [
-        SubjectTopic(
-          title: 'Sonlar va arifmetika asoslari',
-          subtitle: 'Formulas and equations',
-        ),
-        SubjectTopic(
-          title: 'Algebraik ifodalar va formulalar',
-          subtitle: 'Shapes and angles',
-        ),
-        SubjectTopic(
-          title: 'Tenglamalar va tengsizliklar (boshlang‘ich)',
-          subtitle: 'Limits and derivatives',
-        ),
-        SubjectTopic(
-          title: 'Funksiya va grafiklar',
-          subtitle: 'Sin, cos and tan',
-        ),
-        SubjectTopic(
-          title: 'Darajalar va ildizlar',
-          subtitle: 'Data and probability',
-        ),
-        SubjectTopic(
-          title: 'Kvadrat tenglamalar va teoremalar',
-          subtitle: 'Core number skills',
-        ),
-        SubjectTopic(
-          title: 'Murakkab tenglamalar va ifodalar',
-          subtitle: 'Core number skills',
-        ),
-        SubjectTopic(
-          title: 'Logarifmlar va ko‘rsatkichli tenglamalar',
-          subtitle: 'Core number skills',
-        ),
-        SubjectTopic(title: 'Progressiyalar', subtitle: 'Core number skills'),
+        SubjectTopic(title: 'Sonlar va arifmetika asoslari'),
+        SubjectTopic(title: 'Algebraik ifodalar va formulalar'),
+        SubjectTopic(title: 'Tenglamalar va tengsizliklar (boshlang‘ich)'),
+        SubjectTopic(title: 'Funksiya va grafiklar'),
+        SubjectTopic(title: 'Darajalar va ildizlar'),
+        SubjectTopic(title: 'Kvadrat tenglamalar va teoremalar'),
+        SubjectTopic(title: 'Murakkab tenglamalar va ifodalar'),
+        SubjectTopic(title: 'Logarifmlar va ko‘rsatkichli tenglamalar'),
+        SubjectTopic(title: 'Progressiyalar'),
       ],
     ),
   ];

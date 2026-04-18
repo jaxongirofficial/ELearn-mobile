@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 enum SubjectType { mathematics, physics, chemistry, biology }
 
 class SubjectTopic {
-  const SubjectTopic({
-    required this.title,
-    required this.subtitle,
-  });
+  const SubjectTopic({required this.title});
 
   final String title;
-  final String subtitle;
 }
 
 class SubjectSection {
