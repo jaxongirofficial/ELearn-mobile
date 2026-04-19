@@ -1,4 +1,4 @@
-import 'package:elearn_mobile/core/theme/theme_extensions.dart';
+﻿import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +11,21 @@ class HomePage extends StatelessWidget {
       title: 'Mathematics',
       icon: Icons.calculate_rounded,
       topics: [
-        SubjectTopic(title: 'Sonlar va arifmetika asoslari'),
-        SubjectTopic(title: 'Algebraik ifodalar va formulalar'),
-        SubjectTopic(title: 'Tenglamalar va tengsizliklar (boshlang‘ich)'),
-        SubjectTopic(title: 'Funksiya va grafiklar'),
-        SubjectTopic(title: 'Darajalar va ildizlar'),
-        SubjectTopic(title: 'Kvadrat tenglamalar va teoremalar'),
-        SubjectTopic(title: 'Murakkab tenglamalar va ifodalar'),
-        SubjectTopic(title: 'Logarifmlar va ko‘rsatkichli tenglamalar'),
-        SubjectTopic(title: 'Progressiyalar'),
+        SubjectTopic(title: 'Sonlar va arifmetika asoslari', symbol: '√13'),
+        SubjectTopic(title: 'Algebraik ifodalar va formulalar', symbol: 'x²-1'),
+        SubjectTopic(
+          title: 'Tenglamalar va tengsizliklar (boshlangich)',
+          symbol: 'x ≥ 0',
+        ),
+        SubjectTopic(title: 'Funksiya va grafiklar', symbol: 'f(x)'),
+        SubjectTopic(title: 'Darajalar va ildizlar', symbol: '2⁴×3²'),
+        SubjectTopic(title: 'Kvadrat tenglamalar va teoremalar', symbol: 'ax²+bx+c'),
+        SubjectTopic(title: 'Murakkab tenglamalar va ifodalar', symbol: '(x+y)²'),
+        SubjectTopic(
+          title: 'Logarifmlar va korsatkichli tenglamalar',
+          symbol: 'eᶻ',
+        ),
+        SubjectTopic(title: 'Progressiyalar', symbol: 'aₙ'),
       ],
     ),
   ];
@@ -33,7 +39,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         title: const Text('Subjects'),
-        centerTitle: true,
+        centerTitle: false,
         backgroundColor: backgroundColor,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
@@ -82,12 +88,15 @@ class _SubjectSectionBlock extends StatelessWidget {
             crossAxisCount: 3,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            childAspectRatio: 0.84,
+            childAspectRatio: 0.67,
           ),
           itemBuilder: (context, index) {
-            return _SubjectGridCard(
-              section: section,
-              topic: section.topics[index],
+            return FractionallySizedBox(
+              widthFactor: 0.92,
+              child: _SubjectGridCard(
+                section: section,
+                topic: section.topics[index],
+              ),
             );
           },
         ),
@@ -110,9 +119,10 @@ class _SubjectGridCard extends StatelessWidget {
     final palette = _paletteFor(colors, section.type);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
+        AspectRatio(
+          aspectRatio: 1,
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
@@ -138,22 +148,52 @@ class _SubjectGridCard extends StatelessWidget {
               ],
             ),
             child: Center(
-              child: Icon(section.icon, size: 28, color: palette.foreground),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    topic.symbol,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'serif',
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.italic,
+                      letterSpacing: 0.05,
+                      color: palette.foreground.withOpacity(
+                        isDark ? 0.92 : 0.88,
+                      ),
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withOpacity(isDark ? 0.22 : 0.14),
+                          blurRadius: 3,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ),
         const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2),
-          child: Text(
-            topic.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 12,
-              height: 1.25,
-              fontWeight: FontWeight.w600,
-              color: colors.subjectCardTitle,
+        SizedBox(
+          height: 46,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Text(
+              topic.title,
+              textAlign: TextAlign.center,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 12,
+                height: 1.25,
+                fontWeight: FontWeight.w600,
+                color: colors.subjectCardTitle,
+              ),
             ),
           ),
         ),
