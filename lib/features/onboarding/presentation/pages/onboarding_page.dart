@@ -1,4 +1,4 @@
-import 'package:elearn_mobile/core/presentation/main_screen.dart';
+import 'package:elearn_mobile/app/routes/route_names.dart';
 import 'package:elearn_mobile/features/onboarding/presentation/widgets/onboarding_welcome_step.dart';
 import 'package:flutter/material.dart';
 
@@ -21,8 +21,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   void _completeOnboarding() {
-    Navigator.of(
-      context,
-    ).pushReplacement(MaterialPageRoute(builder: (_) => const MainScreen()));
+    Navigator.of(context).pushReplacementNamed(RouteNames.main);
   }
 }

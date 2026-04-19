@@ -1,5 +1,6 @@
+import 'package:elearn_mobile/app/routes/app_router.dart';
+import 'package:elearn_mobile/app/routes/route_names.dart';
 import 'package:elearn_mobile/core/theme/app_theme.dart';
-import 'package:elearn_mobile/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,8 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
-      home: const OnboardingPage(),
+      initialRoute: RouteNames.onboarding,
+      onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
 }
