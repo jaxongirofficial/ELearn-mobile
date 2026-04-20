@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView.separated(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+        padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
         itemCount: subjectSections.length,
         separatorBuilder: (_, __) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
@@ -142,7 +142,7 @@ class _SubjectGridCard extends StatelessWidget {
                       topic.symbol,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 24,
                         fontFamily: 'serif',
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.italic,

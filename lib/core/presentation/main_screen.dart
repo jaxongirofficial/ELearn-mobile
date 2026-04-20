@@ -17,6 +17,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   static const _labelStyle = TextStyle(
     fontSize: 12,
+    height: 1.35,
   );
 
   int _currentIndex = 0;
@@ -37,13 +38,16 @@ class _MainScreenState extends State<MainScreen> {
   ) {
     final isSelected = _currentIndex == index;
 
-    return SvgPicture.asset(
-      assetPath,
-      width: 22,
-      height: 22,
-      colorFilter: ColorFilter.mode(
-        isSelected ? selectedColor : unselectedColor,
-        BlendMode.srcIn,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: SvgPicture.asset(
+        assetPath,
+        width: 22,
+        height: 22,
+        colorFilter: ColorFilter.mode(
+          isSelected ? selectedColor : unselectedColor,
+          BlendMode.srcIn,
+        ),
       ),
     );
   }
