@@ -10,18 +10,18 @@ final List<SubjectSection> subjectSections = [
     topics: [
       SubjectTopic(
         title: 'Sonlar va arifmetika asoslari',
-        symbol: 'sqrt13',
+        symbol: '123',
         pages: getMathTopicPages('Sonlar va arifmetika asoslari'),
         imageAsset: 'assets/icons/library.svg',
       ),
       SubjectTopic(
         title: 'Algebraik ifodalar va formulalar',
-        symbol: 'x2-1',
+        symbol: 'x+y',
         pages: getMathTopicPages('Algebraik ifodalar va formulalar'),
       ),
       SubjectTopic(
         title: 'Tenglamalar va tengsizliklar (boshlangich)',
-        symbol: 'x>=0',
+        symbol: 'x=?',
         pages: getMathTopicPages('Tenglamalar va tengsizliklar (boshlangich)'),
       ),
       SubjectTopic(
@@ -31,22 +31,22 @@ final List<SubjectSection> subjectSections = [
       ),
       SubjectTopic(
         title: 'Darajalar va ildizlar',
-        symbol: '2^4x3^2',
+        symbol: 'x^2',
         pages: getMathTopicPages('Darajalar va ildizlar'),
       ),
       SubjectTopic(
         title: 'Kvadrat tenglamalar va teoremalar',
-        symbol: 'ax^2+bx+c',
+        symbol: 'ax^2',
         pages: getMathTopicPages('Kvadrat tenglamalar va teoremalar'),
       ),
       SubjectTopic(
         title: 'Murakkab tenglamalar va ifodalar',
-        symbol: '(x+y)^2',
+        symbol: '( )^2',
         pages: getMathTopicPages('Murakkab tenglamalar va ifodalar'),
       ),
       SubjectTopic(
         title: 'Logarifmlar va korsatkichli tenglamalar',
-        symbol: 'e^z',
+        symbol: 'log',
         pages: getMathTopicPages('Logarifmlar va korsatkichli tenglamalar'),
       ),
       SubjectTopic(

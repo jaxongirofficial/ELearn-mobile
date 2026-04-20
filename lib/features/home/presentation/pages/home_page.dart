@@ -15,8 +15,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Subjects'),
-        centerTitle: false,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 0,
         backgroundColor: backgroundColor,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
@@ -63,13 +63,13 @@ class _SubjectSectionBlock extends StatelessWidget {
           itemCount: section.topics.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 0.67,
+            crossAxisSpacing: 6,
+            mainAxisSpacing: 6,
+            childAspectRatio: 0.72,
           ),
           itemBuilder: (context, index) {
             return FractionallySizedBox(
-              widthFactor: 0.92,
+              widthFactor: 0.76,
               child: _SubjectGridCard(
                 section: section,
                 topic: section.topics[index],
@@ -96,7 +96,7 @@ class _SubjectGridCard extends StatelessWidget {
     final palette = _paletteFor(colors, section.type);
 
     return InkWell(
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.zero,
       onTap: () {
         Navigator.of(
           context,
@@ -109,7 +109,6 @@ class _SubjectGridCard extends StatelessWidget {
             aspectRatio: 1,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -133,14 +132,17 @@ class _SubjectGridCard extends StatelessWidget {
               ),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 3,
+                  ),
                   child: FittedBox(
                     fit: BoxFit.contain,
                     child: Text(
                       topic.symbol,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontFamily: 'serif',
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.italic,
@@ -164,7 +166,7 @@ class _SubjectGridCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           SizedBox(
             height: 46,
             child: Padding(
@@ -175,7 +177,7 @@ class _SubjectGridCard extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 11.5,
                   height: 1.25,
                   fontWeight: FontWeight.w600,
                   color: colors.subjectCardTitle,
