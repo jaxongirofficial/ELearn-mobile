@@ -1,11 +1,14 @@
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
+import 'app_fonts.dart';
 import 'app_text_theme.dart';
 
 class AppTheme {
   static ThemeData light = ThemeData(
     brightness: Brightness.light,
+    scaffoldBackgroundColor: AppColors.n0,
+    canvasColor: AppColors.n0,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.primary,
@@ -26,7 +29,13 @@ class AppTheme {
       elevation: 0,
       centerTitle: true,
     ),
-    textTheme: AppTextTheme.light,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.n0,
+      elevation: 0,
+      type: BottomNavigationBarType.fixed,
+    ),
+    fontFamily: AppFonts.primary,
+    textTheme: AppFonts.textTheme(AppTextTheme.light),
     extensions: [
       AppCustomColors(
         description: AppColors.n500,
@@ -38,10 +47,10 @@ class AppTheme {
         subjectCardTitle: const Color(0xFF111827),
         subjectCardDescription: const Color(0xFF6B7280),
         mathematicsPalette: const SubjectPalette(
-          start: Color(0xFF2563EB),
-          end: Color(0xFF60A5FA),
+          start: Color(0xFF0F766E),
+          end: Color(0xFF34D399),
           foreground: Colors.white,
-          shadow: Color(0x332563EB),
+          shadow: Color(0x330F766E),
         ),
         physicsPalette: const SubjectPalette(
           start: Color(0xFF7C3AED),
@@ -67,6 +76,8 @@ class AppTheme {
 
   static ThemeData dark = ThemeData(
     brightness: Brightness.dark,
+    scaffoldBackgroundColor: AppColors.dn0,
+    canvasColor: AppColors.dn0,
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.primary,
@@ -87,7 +98,13 @@ class AppTheme {
       elevation: 0,
       centerTitle: true,
     ),
-    textTheme: AppTextTheme.dark,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.dn0,
+      elevation: 0,
+      type: BottomNavigationBarType.fixed,
+    ),
+    fontFamily: AppFonts.primary,
+    textTheme: AppFonts.textTheme(AppTextTheme.dark),
     extensions: [
       AppCustomColors(
         description: AppColors.dn500,
@@ -99,10 +116,10 @@ class AppTheme {
         subjectCardTitle: Colors.white,
         subjectCardDescription: const Color(0xFF94A3B8),
         mathematicsPalette: const SubjectPalette(
-          start: Color(0xFF1D4ED8),
-          end: Color(0xFF38BDF8),
+          start: Color(0xFF0D9488),
+          end: Color(0xFF2DD4BF),
           foreground: Colors.white,
-          shadow: Color(0x4D38BDF8),
+          shadow: Color(0x4D2DD4BF),
         ),
         physicsPalette: const SubjectPalette(
           start: Color(0xFF6D28D9),

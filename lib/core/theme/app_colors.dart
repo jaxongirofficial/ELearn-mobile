@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF4CAF50);
-  static const secondary = Color(0xFF2196F3);
-  static const primaryBlue = Color(0xFF2563EB);
+  static const primary = Color(0xFF0F766E);
+  static const secondary = Color(0xFFF59E0B);
+  static const primaryBlue = Color(0xFF0F766E);
   static const primaryTeal = Color(0xFF14B8A6);
   static const primaryAmber = Color(0xFFF59E0B);
   static const primaryPink = Color(0xFFFB7185);
   static const primaryGreen = Color(0xFF22C55E);
-  static const primarySky = Color(0xFF38BDF8);
+  static const primarySky = Color(0xFF2DD4BF);
   static const primaryViolet = Color(0xFFA78BFA);
   static const primaryPurple = Color(0xFF7C3AED);
   static const primaryRose = Color(0xFFFDA4AF);
@@ -23,21 +23,21 @@ class AppColors {
   static const onboardingOrbitDot = Color(0xFFFFFBEB);
 
   static const onboardingDarkGradient = [
-    Color(0xFF020812),
-    Color(0xFF06101D),
-    Color(0xFF0A1626),
-    Color(0xFF040A14),
+    Color(0xFF0B1110),
+    Color(0xFF111A18),
+    Color(0xFF162320),
+    Color(0xFF0A100F),
   ];
 
   static const onboardingLightGradient = [
-    Color(0xFFF7FBFF),
-    Color(0xFFEAF4FF),
-    Color(0xFFF2FFFB),
+    Color(0xFFF8FDF8),
+    Color(0xFFEEF9F3),
+    Color(0xFFF2FBF7),
     Color(0xFFFFFFFF),
   ];
 
-  static const onboardingHeroDarkGradient = [primaryAmber, primaryPink];
-  static const onboardingHeroLightGradient = [primaryGreen, primaryTeal];
+  static const onboardingHeroDarkGradient = [primaryBlue, primarySky];
+  static const onboardingHeroLightGradient = [primaryBlue, primarySky];
   static const onboardingBadgeBlueGradient = [primarySky, primaryBlue];
   static const onboardingBadgeAmberGradient = [primaryAmber, primaryPink];
   static const onboardingBadgePurpleGradient = [primaryViolet, primaryPurple];
@@ -70,15 +70,19 @@ class AppColors {
 
   static List<Color> primaryGradientForBrightness(Brightness brightness) {
     if (brightness == Brightness.dark) {
-      return const [Color(0xFF60A5FA), Color(0xFF2563EB)];
+      return const [
+        Color(0xFF115E59),
+        Color(0xFF0F766E),
+        Color(0xFF14B8A6),
+      ];
     }
 
-    return const [primaryBlue, primaryTeal];
+    return const [Color(0xFF0D9488), Color(0xFF14B8A6), Color(0xFF2DD4BF)];
   }
 
   static Color primaryGlowForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0xFF60A5FA)
+        ? const Color(0xFF34D399)
         : primaryBlue;
   }
 
@@ -92,27 +96,27 @@ class AppColors {
 
   static Color onboardingOrbPrimaryForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x33438AFE)
-        : const Color(0x6678A9FF);
+        ? const Color(0x2622C55E)
+        : const Color(0x6686EBC4);
   }
 
   static Color onboardingOrbSecondaryForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x2238BDF8)
-        : const Color(0x5547D7C6);
+        ? const Color(0x1E14B8A6)
+        : const Color(0x5556C9A8);
   }
 
   static List<Color> onboardingRadialGlowForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
         ? [
-            const Color(0x555B8CFF),
-            const Color(0x2238BDF8),
-            white.withOpacity(0.02),
+            const Color(0x3334D399),
+            const Color(0x1A14B8A6),
+            white.withOpacity(0.015),
             transparent,
           ]
         : [
-            const Color(0x66A7C7FF),
-            const Color(0x4447D7C6),
+            const Color(0x66A8E6C8),
+            const Color(0x4456C9A8),
             white.withOpacity(0.35),
             transparent,
           ];
@@ -137,19 +141,19 @@ class AppColors {
   }
 
   static Color onboardingHeroGlowForBrightness(Brightness brightness) {
-    return brightness == Brightness.dark ? primaryAmber : primaryTeal;
+    return brightness == Brightness.dark ? primarySky : primaryTeal;
   }
 
   static Color onboardingInnerRingForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x66FDE68A)
+        ? const Color(0x6634D399)
         : const Color(0x6647D7C6);
   }
 
   static Color onboardingOuterRingForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x332DD4BF)
-        : const Color(0x33438AFE);
+        ? const Color(0x2622C55E)
+        : const Color(0x3322C55E);
   }
 
   static Color onboardingBadgeBorder() => white.withOpacity(0.24);

@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.extension<AppCustomColors>()!;
-    final backgroundColor = theme.colorScheme.background;
+    final backgroundColor = theme.scaffoldBackgroundColor;
     final selectedColor = colors.mathematicsPalette.start;
     final unselectedColor = colors.description;
 
