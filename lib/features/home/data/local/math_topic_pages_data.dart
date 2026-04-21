@@ -1,4 +1,4 @@
-import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
+import 'package:elearn_mobile/features/home/domain/entities/subject_catalog.dart';
 
 List<TopicContentPage> getMathTopicPages(String topic) {
   switch (topic) {
@@ -17,13 +17,12 @@ List<TopicContentPage> getMathTopicPages(String topic) {
               'oxirida qoshish yoki ayirish bajariladi.',
         ),
       ];
-  
+
     default:
       return const [
         TopicContentPage(
           heading: 'Berga title qismini yozmiz ',
-          description:
-              'desc',
+          description: 'desc',
         ),
       ];
   }

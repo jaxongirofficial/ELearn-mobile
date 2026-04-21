@@ -1,5 +1,5 @@
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
-import 'package:elearn_mobile/features/calculator/presentation/calculator_page.dart';
+import 'package:elearn_mobile/features/calculator/presentation/pages/calculator_page.dart';
 import 'package:elearn_mobile/features/favourites/presentation/pages/favourites_page.dart';
 import 'package:elearn_mobile/features/home/presentation/pages/home_page.dart';
 import 'package:elearn_mobile/features/library/presentation/pages/library_page.dart';

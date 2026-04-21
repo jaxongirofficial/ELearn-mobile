@@ -1,4 +1,4 @@
-import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
+import 'package:elearn_mobile/features/home/domain/entities/subject_catalog.dart';
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

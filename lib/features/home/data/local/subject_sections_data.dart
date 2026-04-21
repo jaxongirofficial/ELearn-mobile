@@ -1,5 +1,5 @@
-import 'package:elearn_mobile/features/home/data/math_topic_pages_data.dart';
-import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
+import 'package:elearn_mobile/features/home/data/local/math_topic_pages_data.dart';
+import 'package:elearn_mobile/features/home/domain/entities/subject_catalog.dart';
 import 'package:flutter/material.dart';
 
 final List<SubjectSection> subjectSections = [

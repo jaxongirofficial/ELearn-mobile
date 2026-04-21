@@ -1,6 +1,6 @@
 import 'package:elearn_mobile/app/routes/route_names.dart';
-import 'package:elearn_mobile/core/presentation/main_screen.dart';
-import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
+import 'package:elearn_mobile/app/presentation/main_screen.dart';
+import 'package:elearn_mobile/features/home/domain/entities/subject_catalog.dart';
 import 'package:elearn_mobile/features/home/presentation/pages/topic_detail_page.dart';
 import 'package:elearn_mobile/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';

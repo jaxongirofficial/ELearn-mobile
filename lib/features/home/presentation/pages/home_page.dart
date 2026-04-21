@@ -2,8 +2,8 @@ import 'package:elearn_mobile/app/routes/route_names.dart';
 import 'package:elearn_mobile/core/theme/app_colors.dart';
 import 'package:elearn_mobile/core/theme/app_fonts.dart';
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
-import 'package:elearn_mobile/features/home/data/subject_sections_data.dart';
-import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
+import 'package:elearn_mobile/features/home/data/local/subject_sections_data.dart';
+import 'package:elearn_mobile/features/home/domain/entities/subject_catalog.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
