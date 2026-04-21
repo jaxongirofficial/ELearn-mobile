@@ -1,4 +1,5 @@
 import 'package:elearn_mobile/app/routes/route_names.dart';
+import 'package:elearn_mobile/core/theme/app_fonts.dart';
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:elearn_mobile/features/home/data/subject_sections_data.dart';
 import 'package:elearn_mobile/features/home/presentation/models/subject_catalog.dart';
@@ -143,7 +144,7 @@ class _SubjectGridCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
-                        fontFamily: 'serif',
+                        fontFamily: AppFonts.primary,
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.italic,
                         letterSpacing: 0.05,

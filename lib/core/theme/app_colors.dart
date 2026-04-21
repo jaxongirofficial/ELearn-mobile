@@ -41,7 +41,10 @@ class AppColors {
   static const onboardingBadgeBlueGradient = [primarySky, primaryBlue];
   static const onboardingBadgeAmberGradient = [primaryAmber, primaryPink];
   static const onboardingBadgePurpleGradient = [primaryViolet, primaryPurple];
-  static const onboardingBadgeTealGradient = [Color(0xFF2DD4BF), primaryTealDark];
+  static const onboardingBadgeTealGradient = [
+    Color(0xFF2DD4BF),
+    primaryTealDark,
+  ];
   static const onboardingBadgeRoseGradient = [primaryRose, primaryRed];
 
   // Light theme
@@ -70,11 +73,7 @@ class AppColors {
 
   static List<Color> primaryGradientForBrightness(Brightness brightness) {
     if (brightness == Brightness.dark) {
-      return const [
-        Color(0xFF115E59),
-        Color(0xFF0F766E),
-        Color(0xFF14B8A6),
-      ];
+      return const [Color(0xFF115E59), Color(0xFF0F766E), Color(0xFF14B8A6)];
     }
 
     return const [Color(0xFF0D9488), Color(0xFF14B8A6), Color(0xFF2DD4BF)];
