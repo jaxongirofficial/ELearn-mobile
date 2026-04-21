@@ -1,4 +1,5 @@
 import 'package:elearn_mobile/app/routes/route_names.dart';
+import 'package:elearn_mobile/core/theme/app_colors.dart';
 import 'package:elearn_mobile/core/theme/app_fonts.dart';
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:elearn_mobile/features/home/data/subject_sections_data.dart';
@@ -48,7 +49,7 @@ class _SubjectSectionBlock extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 2, bottom: 12),
+          padding: const EdgeInsets.only(left: 2, bottom: 18),
           child: Text(
             section.title,
             style: TextStyle(
@@ -58,25 +59,28 @@ class _SubjectSectionBlock extends StatelessWidget {
             ),
           ),
         ),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: section.topics.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 6,
-            mainAxisSpacing: 6,
-            childAspectRatio: 0.72,
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: section.topics.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 6,
+              mainAxisSpacing: 6,
+              childAspectRatio: 0.72,
+            ),
+            itemBuilder: (context, index) {
+              return FractionallySizedBox(
+                widthFactor: 0.76,
+                child: _SubjectGridCard(
+                  section: section,
+                  topic: section.topics[index],
+                ),
+              );
+            },
           ),
-          itemBuilder: (context, index) {
-            return FractionallySizedBox(
-              widthFactor: 0.76,
-              child: _SubjectGridCard(
-                section: section,
-                topic: section.topics[index],
-              ),
-            );
-          },
         ),
       ],
     );
@@ -95,9 +99,25 @@ class _SubjectGridCard extends StatelessWidget {
     final colors = theme.extension<AppCustomColors>()!;
     final isDark = theme.brightness == Brightness.dark;
     final palette = _paletteFor(colors, section.type);
+    final cardStart =
+        Color.lerp(
+          palette.start,
+          colors.subjectCardBackground,
+          isDark ? 0.16 : 0.28,
+        )!;
+    final cardEnd =
+        Color.lerp(
+          palette.end,
+          colors.subjectCardBackground,
+          isDark ? 0.08 : 0.16,
+        )!;
+    final borderColor =
+        Color.lerp(palette.end, colors.subjectCardBorder, isDark ? 0.35 : 0.55)!;
+    final symbolColor =
+        Color.lerp(palette.foreground, AppColors.white, isDark ? 0.08 : 0.18)!;
 
     return InkWell(
-      borderRadius: BorderRadius.zero,
+      borderRadius: BorderRadius.circular(18),
       onTap: () {
         Navigator.of(
           context,
@@ -110,24 +130,21 @@ class _SubjectGridCard extends StatelessWidget {
             aspectRatio: 1,
             child: DecoratedBox(
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [
-                    palette.start.withOpacity(isDark ? 0.68 : 0.76),
-                    palette.end.withOpacity(isDark ? 0.82 : 0.9),
-                  ],
+                  colors: [cardStart, cardEnd],
                 ),
                 border: Border.all(
-                  color: colors.subjectCardBorder.withOpacity(
-                    isDark ? 0.45 : 0.7,
-                  ),
+                  color: borderColor.withOpacity(isDark ? 0.78 : 0.95),
+                  width: 1.05,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: palette.shadow.withOpacity(isDark ? 0.18 : 0.1),
-                    blurRadius: 12,
-                    offset: const Offset(0, 6),
+                    color: palette.shadow.withOpacity(isDark ? 0.24 : 0.12),
+                    blurRadius: isDark ? 16 : 12,
+                    offset: const Offset(0, 7),
                   ),
                 ],
               ),
@@ -148,9 +165,7 @@ class _SubjectGridCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.italic,
                         letterSpacing: 0.05,
-                        color: palette.foreground.withOpacity(
-                          isDark ? 0.92 : 0.88,
-                        ),
+                        color: symbolColor.withOpacity(isDark ? 0.94 : 0.9),
                         shadows: [
                           Shadow(
                             color: Colors.black.withOpacity(

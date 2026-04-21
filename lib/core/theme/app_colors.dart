@@ -1,88 +1,87 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF0F766E);
-  static const secondary = Color(0xFFF59E0B);
-  static const primaryBlue = Color(0xFF0F766E);
-  static const primaryTeal = Color(0xFF14B8A6);
-  static const primaryAmber = Color(0xFFF59E0B);
-  static const primaryPink = Color(0xFFFB7185);
-  static const primaryGreen = Color(0xFF22C55E);
-  static const primarySky = Color(0xFF2DD4BF);
-  static const primaryViolet = Color(0xFFA78BFA);
-  static const primaryPurple = Color(0xFF7C3AED);
-  static const primaryRose = Color(0xFFFDA4AF);
-  static const primaryRed = Color(0xFFE11D48);
-  static const primaryTealDark = Color(0xFF0F766E);
+  static const primary = Color(0xFFC4DE27);
+  static const primaryLight = Color(0xFFDBF934);
+  static const primaryDark = Color(0xFF586800);
+  static const primarySoft = Color(0xFFF5FBCF);
+
+  static const secondary = Color(0xFF7B6AFE);
+  static const secondaryLight = Color(0xFFA79CFE);
+  static const secondaryDark = Color(0xFF261D6B);
+  static const secondarySoft = Color(0xFFEDEAFF);
+
+  static const accentLime = Color(0xFFA0BC0C);
+  static const accentIndigo = Color(0xFF6150E8);
+  static const accentDeepIndigo = Color(0xFF33268F);
+  static const accentLavender = Color(0xFFC8C1FF);
 
   static const white = Color(0xFFFFFFFF);
   static const transparent = Colors.transparent;
-  static const onboardingLightText = Color(0xFF0F172A);
-  static const onboardingLightDescription = Color(0xFF4B5563);
-  static const onboardingDarkDescription = Color(0xFFD8F3EE);
-  static const onboardingOrbitDot = Color(0xFFFFFBEB);
+  static const onboardingLightText = Color(0xFF161A10);
+  static const onboardingLightDescription = Color(0xFF5C6248);
+  static const onboardingDarkDescription = Color(0xFFD9DCF4);
+  static const onboardingOrbitDotDark = Color(0xFFF6F9E8);
+  static const onboardingOrbitDotLight = Color(0xFFC9CFDD);
 
   static const onboardingDarkGradient = [
-    Color(0xFF0B1110),
-    Color(0xFF111A18),
-    Color(0xFF162320),
-    Color(0xFF0A100F),
+    Color(0xFF0C0E19),
+    Color(0xFF12162A),
+    Color(0xFF181E34),
+    Color(0xFF0D101B),
   ];
 
   static const onboardingLightGradient = [
-    Color(0xFFF8FDF8),
-    Color(0xFFEEF9F3),
-    Color(0xFFF2FBF7),
+    Color(0xFFFFFEF7),
+    Color(0xFFF7F8E8),
+    Color(0xFFF3F0FF),
     Color(0xFFFFFFFF),
   ];
 
-  static const onboardingHeroDarkGradient = [primaryBlue, primarySky];
-  static const onboardingHeroLightGradient = [primaryBlue, primarySky];
-  static const onboardingBadgeBlueGradient = [primarySky, primaryBlue];
-  static const onboardingBadgeAmberGradient = [primaryAmber, primaryPink];
-  static const onboardingBadgePurpleGradient = [primaryViolet, primaryPurple];
-  static const onboardingBadgeTealGradient = [
-    Color(0xFF2DD4BF),
-    primaryTealDark,
-  ];
-  static const onboardingBadgeRoseGradient = [primaryRose, primaryRed];
+  static const onboardingHeroDarkGradient = [secondaryDark, secondary];
+  static const onboardingHeroLightGradient = [secondaryLight, secondary];
+  static const onboardingBadgeBlueGradient = [secondaryLight, accentIndigo];
+  static const onboardingBadgeAmberGradient = [primaryLight, accentLime];
+  static const onboardingBadgePurpleGradient = [accentLavender, secondary];
+  static const onboardingBadgeTealGradient = [primary, accentLime];
+  static const onboardingBadgeRoseGradient = [accentLavender, accentIndigo];
 
   // Light theme
   static const n0 = Color(0xFFFFFFFF);
-  static const n100 = Color(0xFFF5F5F5);
-  static const n200 = Color(0xFFE0E0E0);
-  static const n300 = Color(0xFFBDBDBD);
-  static const n400 = Color(0xFF9E9E9E);
-  static const n500 = Color(0xFF757575);
-  static const n700 = Color(0xFF424242);
-  static const n900 = Color(0xFF111111);
+  static const n100 = Color(0xFFF8F9F1);
+  static const n200 = Color(0xFFE7E9DA);
+  static const n300 = Color(0xFFD2D6C1);
+  static const n400 = Color(0xFFA2A78E);
+  static const n500 = Color(0xFF747A61);
+  static const n700 = Color(0xFF3B402E);
+  static const n900 = Color(0xFF14170F);
 
   // Dark theme
-  static const dn0 = Color(0xFF121212);
-  static const dn100 = Color(0xFF1E1E1E);
-  static const dn200 = Color(0xFF2C2C2C);
-  static const dn300 = Color(0xFF424242);
-  static const dn400 = Color(0xFF616161);
-  static const dn500 = Color(0xFF757575);
-  static const dn700 = Color(0xFFBDBDBD);
-  static const dn900 = Color(0xFFFFFFFF);
+  static const dn0 = Color(0xFF0C0F18);
+  static const dn100 = Color(0xFF151929);
+  static const dn200 = Color(0xFF22273B);
+  static const dn300 = Color(0xFF353C58);
+  static const dn400 = Color(0xFF606988);
+  static const dn500 = Color(0xFF8A93B0);
+  static const dn700 = Color(0xFFD4D8E8);
+  static const dn900 = Color(0xFFFBFCFF);
 
   // Status ranglar
-  static const error = Color(0xFFE53935);
-  static const success = Color(0xFF43A047);
+  static const success = Color(0xFF1FA971);
+  static const error = Color(0xFFE34972);
+  static const warning = Color(0xFFE0AF00);
+  static const info = Color(0xFF3F7CFF);
 
   static List<Color> primaryGradientForBrightness(Brightness brightness) {
     if (brightness == Brightness.dark) {
-      return const [Color(0xFF115E59), Color(0xFF0F766E), Color(0xFF14B8A6)];
+      return const [secondaryDark, accentDeepIndigo, primaryDark];
     }
 
-    return const [Color(0xFF0D9488), Color(0xFF14B8A6), Color(0xFF2DD4BF)];
+    return const [primaryDark, primary, primaryLight];
   }
 
   static Color primaryGlowForBrightness(Brightness brightness) {
-    return brightness == Brightness.dark
-        ? const Color(0xFF34D399)
-        : primaryBlue;
+    return brightness == Brightness.dark ? secondary : primary;
   }
 
   static List<Color> onboardingBackgroundGradientForBrightness(
@@ -95,27 +94,27 @@ class AppColors {
 
   static Color onboardingOrbPrimaryForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x2622C55E)
-        : const Color(0x6686EBC4);
+        ? const Color(0x267B6AFE)
+        : const Color(0x66DBF934);
   }
 
   static Color onboardingOrbSecondaryForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x1E14B8A6)
-        : const Color(0x5556C9A8);
+        ? const Color(0x20586800)
+        : const Color(0x447B6AFE);
   }
 
   static List<Color> onboardingRadialGlowForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
         ? [
-            const Color(0x3334D399),
-            const Color(0x1A14B8A6),
+            const Color(0x337B6AFE),
+            const Color(0x20586800),
             white.withOpacity(0.015),
             transparent,
           ]
         : [
-            const Color(0x66A8E6C8),
-            const Color(0x4456C9A8),
+            const Color(0x66DBF934),
+            const Color(0x447B6AFE),
             white.withOpacity(0.35),
             transparent,
           ];
@@ -140,22 +139,28 @@ class AppColors {
   }
 
   static Color onboardingHeroGlowForBrightness(Brightness brightness) {
-    return brightness == Brightness.dark ? primarySky : primaryTeal;
+    return brightness == Brightness.dark ? secondary : primary;
   }
 
   static Color onboardingInnerRingForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x6634D399)
-        : const Color(0x6647D7C6);
+        ? const Color(0x667B6AFE)
+        : const Color(0x66C8C1FF);
   }
 
   static Color onboardingOuterRingForBrightness(Brightness brightness) {
     return brightness == Brightness.dark
-        ? const Color(0x2622C55E)
-        : const Color(0x3322C55E);
+        ? const Color(0x66A79CFE)
+        : const Color(0x33A79CFE);
   }
 
-  static Color onboardingBadgeBorder() => white.withOpacity(0.24);
+  static Color onboardingOrbitDotForBrightness(Brightness brightness) {
+    return brightness == Brightness.dark
+        ? onboardingOrbitDotDark
+        : onboardingOrbitDotLight;
+  }
 
-  static Color onboardingDotGlow() => white.withOpacity(0.18);
+  static Color onboardingBadgeBorder() => white.withOpacity(0.45);
+
+  static Color onboardingDotGlow() => secondary.withOpacity(0.22);
 }

@@ -151,11 +151,12 @@ class _OnboardingOrbitHeroState extends State<OnboardingOrbitHero>
   }
 
   List<Widget> _orbitDots() {
+    final brightness = widget.isDark ? Brightness.dark : Brightness.light;
     const orbitConfigs = [
-      (radius: 78.0, size: 14.0, speed: 1.0, phase: 4.5),
-      (radius: 78.0, size: 10.0, speed: 1.0, phase: 6.1),
-      (radius: 132.0, size: 18.0, speed: -0.8, phase: 0.7),
-      (radius: 132.0, size: 12.0, speed: -0.8, phase: 3.0),
+      (radius: 83.0, size: 14.0, speed: 1.0, phase: 4.5),
+      (radius: 83.0, size: 10.0, speed: 1.0, phase: 6.1),
+      (radius: 134.0, size: 18.0, speed: -0.8, phase: 0.7),
+      (radius: 134.0, size: 12.0, speed: -0.8, phase: 3.0),
     ];
     const orbitPeriod = 18.0;
     final elapsedSeconds =
@@ -174,7 +175,7 @@ class _OnboardingOrbitHeroState extends State<OnboardingOrbitHero>
           width: item.size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.onboardingOrbitDot,
+            color: AppColors.onboardingOrbitDotForBrightness(brightness),
             boxShadow: [
               BoxShadow(color: AppColors.onboardingDotGlow(), blurRadius: 12),
             ],
