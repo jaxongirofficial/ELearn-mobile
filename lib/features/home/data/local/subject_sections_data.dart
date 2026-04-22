@@ -29,31 +29,6 @@ final List<SubjectSection> subjectSections = [
         symbol: 'f(x)',
         pages: getMathTopicPages('Funksiya va grafiklar'),
       ),
-      SubjectTopic(
-        title: 'Darajalar va ildizlar',
-        symbol: '√x',
-        pages: getMathTopicPages('Darajalar va ildizlar'),
-      ),
-      SubjectTopic(
-        title: 'Kvadrat tenglamalar va teoremalar',
-        symbol: 'ax²',
-        pages: getMathTopicPages('Kvadrat tenglamalar va teoremalar'),
-      ),
-      SubjectTopic(
-        title: 'Murakkab tenglamalar va ifodalar',
-        symbol: '(x+y)²',
-        pages: getMathTopicPages('Murakkab tenglamalar va ifodalar'),
-      ),
-      SubjectTopic(
-        title: 'Logarifmlar va korsatkichli tenglamalar',
-        symbol: 'logₐx',
-        pages: getMathTopicPages('Logarifmlar va korsatkichli tenglamalar'),
-      ),
-      SubjectTopic(
-        title: 'Progressiyalar',
-        symbol: 'aₙ',
-        pages: getMathTopicPages('Progressiyalar'),
-      ),
     ],
   ),
 ];

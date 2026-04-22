@@ -1,130 +1,173 @@
-import 'package:elearn_mobile/core/theme/app_colors.dart';
-import 'package:elearn_mobile/core/theme/app_fonts.dart';
 import 'package:elearn_mobile/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 
 class SubjectTopicCard extends StatelessWidget {
   const SubjectTopicCard({
-    required this.symbol,
     required this.title,
+    required this.subtitle,
     required this.cardColors,
     this.onTap,
     super.key,
   });
 
-  final String symbol;
   final String title;
+  final String subtitle;
   final SubjectPalette cardColors;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colors = theme.extension<AppCustomColors>()!;
+    final customColors = theme.extension<AppCustomColors>()!;
     final isDark = theme.brightness == Brightness.dark;
-    final borderRadius = BorderRadius.circular(18);
-    final cardStart =
-        Color.lerp(
-          cardColors.start,
-          colors.subjectCardBackground,
-          isDark ? 0.16 : 0.28,
-        )!;
-    final cardEnd =
-        Color.lerp(
-          cardColors.end,
-          colors.subjectCardBackground,
-          isDark ? 0.08 : 0.16,
-        )!;
-    final borderColor =
-        Color.lerp(
-          cardColors.end,
-          colors.subjectCardBorder,
-          isDark ? 0.35 : 0.55,
-        )!;
-    final symbolColor =
-        Color.lerp(
-          cardColors.foreground,
-          AppColors.white,
-          isDark ? 0.08 : 0.18,
-        )!;
+
+    final cardStart = Color.lerp(
+      customColors.subjectCardBackground,
+      cardColors.start,
+      isDark ? 0.22 : 0.12,
+    )!;
+    final cardEnd = Color.lerp(
+      customColors.subjectCardBackground,
+      cardColors.end,
+      isDark ? 0.16 : 0.08,
+    )!;
+    final borderColor = Color.lerp(
+      customColors.subjectCardBorder,
+      cardColors.end,
+      isDark ? 0.5 : 0.28,
+    )!;
 
     return InkWell(
-      borderRadius: borderRadius,
+      borderRadius: BorderRadius.circular(20),
       onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [cardStart, cardEnd],
-                ),
-                border: Border.all(
-                  color: borderColor.withOpacity(isDark ? 0.78 : 0.95),
-                  width: 1.05,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: cardColors.shadow.withOpacity(isDark ? 0.24 : 0.12),
-                    blurRadius: isDark ? 16 : 12,
-                    offset: const Offset(0, 7),
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      symbol,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontFamily: AppFonts.primary,
-                        fontWeight: FontWeight.w600,
-                        fontStyle: FontStyle.italic,
-                        letterSpacing: 0.05,
-                        color: symbolColor.withOpacity(isDark ? 0.94 : 0.9),
-                        shadows: [
-                          Shadow(
-                            color: Colors.black.withOpacity(isDark ? 0.22 : 0.14),
-                            blurRadius: 3,
-                            offset: const Offset(0, 1),
-                          ),
-                        ],
+      child: Ink(
+        width: double.infinity,
+        height: 124,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [cardStart, cardEnd],
+          ),
+          border: Border.all(color: borderColor.withOpacity(isDark ? 0.72 : 0.94)),
+          boxShadow: [
+            BoxShadow(
+              color: cardColors.shadow.withOpacity(isDark ? 0.2 : 0.1),
+              blurRadius: isDark ? 14 : 10,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              _AccentPanel(start: cardColors.start, end: cardColors.end),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 38,
+                      child: Text(
+                        title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 16,
+                          height: 1.2,
+                          fontWeight: FontWeight.w800,
+                          color: customColors.subjectCardTitle,
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(height: 6),
+                    SizedBox(
+                      height: 34,
+                      child: Text(
+                        subtitle,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          height: 1.28,
+                          fontWeight: FontWeight.w500,
+                          color: customColors.subjectCardDescription,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
                 ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AccentPanel extends StatelessWidget {
+  const _AccentPanel({
+    required this.start,
+    required this.end,
+  });
+
+  final Color start;
+  final Color end;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 54,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [start.withOpacity(0.92), end.withOpacity(0.92)],
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 8,
+            left: 8,
+            child: _dot(10, Colors.white.withOpacity(0.95)),
+          ),
+          Positioned(
+            top: 24,
+            left: 14,
+            child: Container(
+              width: 2,
+              height: 38,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(99),
+                color: Colors.white.withOpacity(0.5),
               ),
             ),
           ),
-          const SizedBox(height: 4),
-          SizedBox(
-            height: 46,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2),
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 11.5,
-                  height: 1.25,
-                  fontWeight: FontWeight.w600,
-                  color: colors.subjectCardTitle,
-                ),
-              ),
-            ),
+          Positioned(
+            bottom: 10,
+            right: 8,
+            child: _dot(12, Colors.white.withOpacity(0.9)),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _dot(double size, Color color) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
       ),
     );
   }

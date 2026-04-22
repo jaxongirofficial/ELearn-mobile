@@ -39,13 +39,6 @@ class HomePage extends StatelessWidget {
 class _SubjectSectionBlock extends StatelessWidget {
   const _SubjectSectionBlock({required this.section});
 
-  static const _gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 3,
-    crossAxisSpacing: 6,
-    mainAxisSpacing: 6,
-    childAspectRatio: 0.72,
-  );
-
   final SubjectSection section;
 
   @override
@@ -58,7 +51,7 @@ class _SubjectSectionBlock extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 2, bottom: 18),
+          padding: const EdgeInsets.only(left: 2, bottom: 12),
           child: Text(
             section.title,
             style: TextStyle(
@@ -69,26 +62,23 @@ class _SubjectSectionBlock extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 4),
-          child: GridView.builder(
+          padding: const EdgeInsets.only(top: 2),
+          child: ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: section.topics.length,
-            gridDelegate: _gridDelegate,
+            separatorBuilder: (_, __) => const SizedBox(height: 10),
             itemBuilder: (context, index) {
               final topic = section.topics[index];
-              return FractionallySizedBox(
-                widthFactor: 0.76,
-                child: SubjectTopicCard(
-                  symbol: topic.symbol,
-                  title: topic.title,
-                  cardColors: cardColors,
-                  onTap: () {
-                    Navigator.of(
-                      context,
-                    ).pushNamed(RouteNames.topicDetail, arguments: topic);
-                  },
-                ),
+              return SubjectTopicCard(
+                title: topic.title,
+                subtitle: _subtitleFor(topic),
+                cardColors: cardColors,
+                onTap: () {
+                  Navigator.of(
+                    context,
+                  ).pushNamed(RouteNames.topicDetail, arguments: topic);
+                },
               );
             },
           ),
@@ -107,6 +97,33 @@ class _SubjectSectionBlock extends StatelessWidget {
         return colors.chemistryPalette;
       case SubjectType.biology:
         return colors.biologyPalette;
+    }
+  }
+
+  String _subtitleFor(SubjectTopic topic) {
+    switch (topic.title) {
+      case 'Sonlar va arifmetika asoslari':
+        return 'Sonlar va amallar asoslari.';
+      case 'Algebraik ifodalar va formulalar':
+        return 'Ifoda va formulalarni soddalashtiring.';
+      case 'Tenglamalar va tengsizliklar (boshlangich)':
+        return 'Oddiy tenglama va tengsizliklar.';
+      case 'Funksiya va grafiklar':
+        return 'Funksiya va grafiklar bilan ishlash.';
+      case 'Darajalar va ildizlar':
+        return 'Daraja va ildiz xossalarini organing.';
+      case 'Kvadrat tenglamalar va teoremalar':
+        return 'Kvadrat tenglamalarni tez yeching.';
+      case 'Murakkab tenglamalar va ifodalar':
+        return 'Murakkab ifodalar va yechimlar.';
+      case 'Logarifmlar va korsatkichli tenglamalar':
+        return 'Logarifm va eksponent tenglamalar.';
+      case 'Progressiyalar':
+        return 'Arifmetik va geometrik progressiyalar.';
+      default:
+        return topic.pages.isEmpty
+            ? 'Qisqa dars va mashqlar.'
+            : topic.pages.first.description;
     }
   }
 }
