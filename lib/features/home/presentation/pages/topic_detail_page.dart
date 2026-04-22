@@ -14,13 +14,13 @@ class TopicDetailPage extends StatefulWidget {
 
 class _TopicDetailPageState extends State<TopicDetailPage> {
   int _pageIndex = 0;
+  late final List<TopicContentPage> _pages;
+  late final bool _hasSvgImage;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colors = theme.extension<AppCustomColors>()!;
-    final primary = colors.mathematicsPalette.start;
-    final pages = widget.topic.pages.isEmpty
+  void initState() {
+    super.initState();
+    _pages = widget.topic.pages.isEmpty
         ? const [
             TopicContentPage(
               heading: 'Mavzu haqida',
@@ -28,9 +28,17 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
             ),
           ]
         : widget.topic.pages;
-    final page = pages[_pageIndex];
+    _hasSvgImage = widget.topic.imageAsset?.toLowerCase().endsWith('.svg') ?? false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppCustomColors>()!;
+    final primary = colors.mathematicsPalette.start;
+    final page = _pages[_pageIndex];
     final isFirst = _pageIndex == 0;
-    final isLast = _pageIndex == pages.length - 1;
+    final isLast = _pageIndex == _pages.length - 1;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +57,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
               const SizedBox(height: 12),
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: widget.topic.imageAsset!.toLowerCase().endsWith('.svg')
+                child: _hasSvgImage
                     ? SvgPicture.asset(
                         widget.topic.imageAsset!,
                         height: 120,

@@ -28,7 +28,9 @@ class HomePage extends StatelessWidget {
         itemCount: subjectSections.length,
         separatorBuilder: (_, __) => const SizedBox(height: 20),
         itemBuilder: (context, index) {
-          return _SubjectSectionBlock(section: subjectSections[index]);
+          return RepaintBoundary(
+            child: _SubjectSectionBlock(section: subjectSections[index]),
+          );
         },
       ),
     );
@@ -37,6 +39,13 @@ class HomePage extends StatelessWidget {
 
 class _SubjectSectionBlock extends StatelessWidget {
   const _SubjectSectionBlock({required this.section});
+
+  static const _gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 3,
+    crossAxisSpacing: 6,
+    mainAxisSpacing: 6,
+    childAspectRatio: 0.72,
+  );
 
   final SubjectSection section;
 
@@ -65,12 +74,7 @@ class _SubjectSectionBlock extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: section.topics.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 6,
-              mainAxisSpacing: 6,
-              childAspectRatio: 0.72,
-            ),
+            gridDelegate: _gridDelegate,
             itemBuilder: (context, index) {
               return FractionallySizedBox(
                 widthFactor: 0.76,
@@ -98,6 +102,7 @@ class _SubjectGridCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colors = theme.extension<AppCustomColors>()!;
     final isDark = theme.brightness == Brightness.dark;
+    final borderRadius = BorderRadius.circular(18);
     final palette = _paletteFor(colors, section.type);
     final cardStart =
         Color.lerp(
@@ -117,7 +122,7 @@ class _SubjectGridCard extends StatelessWidget {
         Color.lerp(palette.foreground, AppColors.white, isDark ? 0.08 : 0.18)!;
 
     return InkWell(
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: borderRadius,
       onTap: () {
         Navigator.of(
           context,
@@ -130,7 +135,7 @@ class _SubjectGridCard extends StatelessWidget {
             aspectRatio: 1,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: borderRadius,
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
