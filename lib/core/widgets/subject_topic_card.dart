@@ -7,14 +7,14 @@ class SubjectTopicCard extends StatelessWidget {
   const SubjectTopicCard({
     required this.symbol,
     required this.title,
-    required this.palette,
+    required this.cardColors,
     this.onTap,
     super.key,
   });
 
   final String symbol;
   final String title;
-  final SubjectPalette palette;
+  final SubjectPalette cardColors;
   final VoidCallback? onTap;
 
   @override
@@ -25,20 +25,28 @@ class SubjectTopicCard extends StatelessWidget {
     final borderRadius = BorderRadius.circular(18);
     final cardStart =
         Color.lerp(
-          palette.start,
+          cardColors.start,
           colors.subjectCardBackground,
           isDark ? 0.16 : 0.28,
         )!;
     final cardEnd =
         Color.lerp(
-          palette.end,
+          cardColors.end,
           colors.subjectCardBackground,
           isDark ? 0.08 : 0.16,
         )!;
     final borderColor =
-        Color.lerp(palette.end, colors.subjectCardBorder, isDark ? 0.35 : 0.55)!;
+        Color.lerp(
+          cardColors.end,
+          colors.subjectCardBorder,
+          isDark ? 0.35 : 0.55,
+        )!;
     final symbolColor =
-        Color.lerp(palette.foreground, AppColors.white, isDark ? 0.08 : 0.18)!;
+        Color.lerp(
+          cardColors.foreground,
+          AppColors.white,
+          isDark ? 0.08 : 0.18,
+        )!;
 
     return InkWell(
       borderRadius: borderRadius,
@@ -62,7 +70,7 @@ class SubjectTopicCard extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: palette.shadow.withOpacity(isDark ? 0.24 : 0.12),
+                    color: cardColors.shadow.withOpacity(isDark ? 0.24 : 0.12),
                     blurRadius: isDark ? 16 : 12,
                     offset: const Offset(0, 7),
                   ),

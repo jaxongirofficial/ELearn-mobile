@@ -52,7 +52,7 @@ class _SubjectSectionBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.extension<AppCustomColors>()!;
-    final palette = _paletteFor(colors, section.type);
+    final cardColors = _cardColorsFor(colors, section.type);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,7 @@ class _SubjectSectionBlock extends StatelessWidget {
                 child: SubjectTopicCard(
                   symbol: topic.symbol,
                   title: topic.title,
-                  palette: palette,
+                  cardColors: cardColors,
                   onTap: () {
                     Navigator.of(
                       context,
@@ -97,7 +97,7 @@ class _SubjectSectionBlock extends StatelessWidget {
     );
   }
 
-  SubjectPalette _paletteFor(AppCustomColors colors, SubjectType type) {
+  SubjectPalette _cardColorsFor(AppCustomColors colors, SubjectType type) {
     switch (type) {
       case SubjectType.mathematics:
         return colors.mathematicsPalette;
