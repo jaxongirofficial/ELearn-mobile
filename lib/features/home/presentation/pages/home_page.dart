@@ -63,24 +63,26 @@ class _SubjectSectionBlock extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 2),
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: section.topics.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 10),
-            itemBuilder: (context, index) {
-              final topic = section.topics[index];
-              return SubjectTopicCard(
-                title: topic.title,
-                subtitle: _subtitleFor(topic),
-                cardColors: cardColors,
-                onTap: () {
-                  Navigator.of(
-                    context,
-                  ).pushNamed(RouteNames.topicDetail, arguments: topic);
-                },
-              );
-            },
+          child: Column(
+            children: [
+              for (var index = 0; index < section.topics.length; index++) ...[
+                RepaintBoundary(
+                  child: SubjectTopicCard(
+                    title: section.topics[index].title,
+                    subtitle: _subtitleFor(section.topics[index]),
+                    cardColors: cardColors,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        RouteNames.topicDetail,
+                        arguments: section.topics[index],
+                      );
+                    },
+                  ),
+                ),
+                if (index != section.topics.length - 1)
+                  const SizedBox(height: 10),
+              ],
+            ],
           ),
         ),
       ],

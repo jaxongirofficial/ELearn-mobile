@@ -20,6 +20,9 @@ class SubjectTopicCard extends StatelessWidget {
     final theme = Theme.of(context);
     final customColors = theme.extension<AppCustomColors>()!;
     final isDark = theme.brightness == Brightness.dark;
+    final borderRadius = BorderRadius.circular(20);
+    const titleHeight = 40.0;
+    const subtitleHeight = 34.0;
 
     final cardStart = Color.lerp(
       customColors.subjectCardBackground,
@@ -37,73 +40,94 @@ class SubjectTopicCard extends StatelessWidget {
       isDark ? 0.5 : 0.28,
     )!;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: onTap,
-      child: Ink(
-        width: double.infinity,
-        height: 124,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [cardStart, cardEnd],
-          ),
-          border: Border.all(color: borderColor.withOpacity(isDark ? 0.72 : 0.94)),
-          boxShadow: [
-            BoxShadow(
-              color: cardColors.shadow.withOpacity(isDark ? 0.2 : 0.1),
-              blurRadius: isDark ? 14 : 10,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              _AccentPanel(start: cardColors.start, end: cardColors.end),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 38,
-                      child: Text(
-                        title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 16,
-                          height: 1.2,
-                          fontWeight: FontWeight.w800,
-                          color: customColors.subjectCardTitle,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    SizedBox(
-                      height: 34,
-                      child: Text(
-                        subtitle,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 12.5,
-                          height: 1.28,
-                          fontWeight: FontWeight.w500,
-                          color: customColors.subjectCardDescription,
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                  ],
-                ),
+    return RepaintBoundary(
+      child: Material(
+        color: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: borderRadius),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          borderRadius: borderRadius,
+          onTap: onTap,
+          child: Ink(
+            width: double.infinity,
+            height: 124,
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [cardStart, cardEnd],
               ),
-            ],
+              border: Border.all(
+                color: borderColor.withOpacity(isDark ? 0.72 : 0.94),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: cardColors.shadow.withOpacity(isDark ? 0.2 : 0.1),
+                  blurRadius: isDark ? 14 : 10,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  _AccentPanel(start: cardColors.start, end: cardColors.end),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: titleHeight,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              strutStyle: const StrutStyle(
+                                forceStrutHeight: true,
+                                height: 1.2,
+                              ),
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.2,
+                                fontWeight: FontWeight.w800,
+                                color: customColors.subjectCardTitle,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        SizedBox(
+                          height: subtitleHeight,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              subtitle,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              strutStyle: const StrutStyle(
+                                forceStrutHeight: true,
+                                height: 1.28,
+                              ),
+                              style: TextStyle(
+                                fontSize: 12.5,
+                                height: 1.28,
+                                fontWeight: FontWeight.w500,
+                                color: customColors.subjectCardDescription,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
