@@ -109,14 +109,26 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
       cardBorder: Color.lerp(cardBorder, other.cardBorder, t)!,
       divider: Color.lerp(divider, other.divider, t)!,
       placeholder: Color.lerp(placeholder, other.placeholder, t)!,
-      subjectCardBackground:
-          Color.lerp(subjectCardBackground, other.subjectCardBackground, t)!,
-      subjectCardBorder:
-          Color.lerp(subjectCardBorder, other.subjectCardBorder, t)!,
-      subjectCardTitle:
-          Color.lerp(subjectCardTitle, other.subjectCardTitle, t)!,
-      subjectCardDescription:
-          Color.lerp(subjectCardDescription, other.subjectCardDescription, t)!,
+      subjectCardBackground: Color.lerp(
+        subjectCardBackground,
+        other.subjectCardBackground,
+        t,
+      )!,
+      subjectCardBorder: Color.lerp(
+        subjectCardBorder,
+        other.subjectCardBorder,
+        t,
+      )!,
+      subjectCardTitle: Color.lerp(
+        subjectCardTitle,
+        other.subjectCardTitle,
+        t,
+      )!,
+      subjectCardDescription: Color.lerp(
+        subjectCardDescription,
+        other.subjectCardDescription,
+        t,
+      )!,
       mathematicsPalette: SubjectPalette.lerp(
         mathematicsPalette,
         other.mathematicsPalette,

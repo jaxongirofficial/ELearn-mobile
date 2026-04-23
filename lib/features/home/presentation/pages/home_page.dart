@@ -37,9 +37,16 @@ class HomePage extends StatelessWidget {
 }
 
 class _SubjectSectionBlock extends StatelessWidget {
-  const _SubjectSectionBlock({required this.section});
+  _SubjectSectionBlock({required this.section});
 
   final SubjectSection section;
+
+  final List<String> images = [
+    'assets/images/123.png',
+    'assets/images/x2.png',
+    'assets/images/tengsizlik.png',
+    'assets/images/functions.png',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -61,29 +68,25 @@ class _SubjectSectionBlock extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: Column(
-            children: [
-              for (var index = 0; index < section.topics.length; index++) ...[
-                RepaintBoundary(
-                  child: SubjectTopicCard(
-                    title: section.topics[index].title,
-                    subtitle: _subtitleFor(section.topics[index]),
-                    cardColors: cardColors,
-                    onTap: () {
-                      Navigator.of(context).pushNamed(
-                        RouteNames.topicDetail,
-                        arguments: section.topics[index],
-                      );
-                    },
-                  ),
-                ),
-                if (index != section.topics.length - 1)
-                  const SizedBox(height: 10),
-              ],
+        Column(
+          children: [
+            for (var index = 0; index < section.topics.length; index++) ...[
+              SubjectTopicCard(
+                title: section.topics[index].title,
+                subtitle: _subtitleFor(section.topics[index]),
+                cardColors: cardColors,
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    RouteNames.topicDetail,
+                    arguments: section.topics[index],
+                  );
+                },
+                imagePath: images[index % images.length],
+              ),
+              if (index != section.topics.length - 1)
+                const SizedBox(height: 10),
             ],
-          ),
+          ],
         ),
       ],
     );

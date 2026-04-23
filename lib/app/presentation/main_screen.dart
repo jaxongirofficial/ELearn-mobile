@@ -15,10 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  static const _labelStyle = TextStyle(
-    fontSize: 12,
-    height: 1.35,
-  );
+  static const _labelStyle = TextStyle(fontSize: 12, height: 1.35);
 
   int _currentIndex = 0;
 

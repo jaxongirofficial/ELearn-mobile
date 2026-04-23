@@ -6,6 +6,7 @@ class SubjectTopicCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.cardColors,
+    required this.imagePath,
     this.onTap,
     super.key,
   });
@@ -13,6 +14,7 @@ class SubjectTopicCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final SubjectPalette cardColors;
+  final String imagePath;
   final VoidCallback? onTap;
 
   @override
@@ -21,8 +23,6 @@ class SubjectTopicCard extends StatelessWidget {
     final customColors = theme.extension<AppCustomColors>()!;
     final isDark = theme.brightness == Brightness.dark;
     final borderRadius = BorderRadius.circular(20);
-    const titleHeight = 40.0;
-    const subtitleHeight = 34.0;
 
     final cardStart = Color.lerp(
       customColors.subjectCardBackground,
@@ -43,13 +43,10 @@ class SubjectTopicCard extends StatelessWidget {
     return RepaintBoundary(
       child: Material(
         color: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        clipBehavior: Clip.antiAlias,
         child: InkWell(
           borderRadius: borderRadius,
           onTap: onTap,
           child: Ink(
-            width: double.infinity,
             height: 124,
             decoration: BoxDecoration(
               borderRadius: borderRadius,
@@ -61,137 +58,77 @@ class SubjectTopicCard extends StatelessWidget {
               border: Border.all(
                 color: borderColor.withOpacity(isDark ? 0.72 : 0.94),
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: cardColors.shadow.withOpacity(isDark ? 0.2 : 0.1),
-                  blurRadius: isDark ? 14 : 10,
-                  offset: const Offset(0, 5),
+            ),
+            child: Stack(
+              children: [
+                Positioned(
+                  left: -2,
+                  top: 12,
+                  bottom: 12,
+                  child: Container(
+                    width: 6,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
+                      ),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [cardColors.start, cardColors.end],
+                      ),
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  right: 8,
+                  bottom: -10,
+                  top: -10,
+                  child: Opacity(
+                    opacity: 0.9,
+                    child: Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                      width: 100,
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 12, 120, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: customColors.subjectCardTitle,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        subtitle,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w500,
+                          color: customColors.subjectCardDescription,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                children: [
-                  _AccentPanel(start: cardColors.start, end: cardColors.end),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: titleHeight,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              title,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              strutStyle: const StrutStyle(
-                                forceStrutHeight: true,
-                                height: 1.2,
-                              ),
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 1.2,
-                                fontWeight: FontWeight.w800,
-                                color: customColors.subjectCardTitle,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        SizedBox(
-                          height: subtitleHeight,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              subtitle,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              strutStyle: const StrutStyle(
-                                forceStrutHeight: true,
-                                height: 1.28,
-                              ),
-                              style: TextStyle(
-                                fontSize: 12.5,
-                                height: 1.28,
-                                fontWeight: FontWeight.w500,
-                                color: customColors.subjectCardDescription,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _AccentPanel extends StatelessWidget {
-  const _AccentPanel({
-    required this.start,
-    required this.end,
-  });
-
-  final Color start;
-  final Color end;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 54,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [start.withOpacity(0.92), end.withOpacity(0.92)],
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 8,
-            left: 8,
-            child: _dot(10, Colors.white.withOpacity(0.95)),
-          ),
-          Positioned(
-            top: 24,
-            left: 14,
-            child: Container(
-              width: 2,
-              height: 38,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(99),
-                color: Colors.white.withOpacity(0.5),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            right: 8,
-            child: _dot(12, Colors.white.withOpacity(0.9)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _dot(double size, Color color) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color,
       ),
     );
   }

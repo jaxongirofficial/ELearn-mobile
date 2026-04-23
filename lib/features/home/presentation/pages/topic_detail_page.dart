@@ -28,7 +28,8 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
             ),
           ]
         : widget.topic.pages;
-    _hasSvgImage = widget.topic.imageAsset?.toLowerCase().endsWith('.svg') ?? false;
+    _hasSvgImage =
+        widget.topic.imageAsset?.toLowerCase().endsWith('.svg') ?? false;
   }
 
   @override
@@ -41,18 +42,13 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
     final isLast = _pageIndex == _pages.length - 1;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.topic.title),
-      ),
+      appBar: AppBar(title: Text(widget.topic.title)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              page.heading,
-              style: theme.textTheme.titleLarge,
-            ),
+            Text(page.heading, style: theme.textTheme.titleLarge),
             if (widget.topic.imageAsset != null) ...[
               const SizedBox(height: 12),
               ClipRRect(
@@ -73,10 +69,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
               ),
             ],
             const SizedBox(height: 12),
-            Text(
-              page.description,
-              style: theme.textTheme.bodyLarge,
-            ),
+            Text(page.description, style: theme.textTheme.bodyLarge),
             const Spacer(),
             Row(
               children: [
