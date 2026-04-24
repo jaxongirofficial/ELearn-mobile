@@ -48,10 +48,6 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
   final Color subjectCardBorder;
   final Color subjectCardTitle;
   final Color subjectCardDescription;
-  final SubjectPalette mathematicsPalette;
-  final SubjectPalette physicsPalette;
-  final SubjectPalette chemistryPalette;
-  final SubjectPalette biologyPalette;
 
   const AppCustomColors({
     required this.description,
@@ -62,10 +58,6 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     required this.subjectCardBorder,
     required this.subjectCardTitle,
     required this.subjectCardDescription,
-    required this.mathematicsPalette,
-    required this.physicsPalette,
-    required this.chemistryPalette,
-    required this.biologyPalette,
   });
 
   @override
@@ -78,10 +70,6 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     Color? subjectCardBorder,
     Color? subjectCardTitle,
     Color? subjectCardDescription,
-    SubjectPalette? mathematicsPalette,
-    SubjectPalette? physicsPalette,
-    SubjectPalette? chemistryPalette,
-    SubjectPalette? biologyPalette,
   }) {
     return AppCustomColors(
       description: description ?? this.description,
@@ -94,10 +82,6 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
       subjectCardTitle: subjectCardTitle ?? this.subjectCardTitle,
       subjectCardDescription:
           subjectCardDescription ?? this.subjectCardDescription,
-      mathematicsPalette: mathematicsPalette ?? this.mathematicsPalette,
-      physicsPalette: physicsPalette ?? this.physicsPalette,
-      chemistryPalette: chemistryPalette ?? this.chemistryPalette,
-      biologyPalette: biologyPalette ?? this.biologyPalette,
     );
   }
 
@@ -129,26 +113,6 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
         other.subjectCardDescription,
         t,
       )!,
-      mathematicsPalette: SubjectPalette.lerp(
-        mathematicsPalette,
-        other.mathematicsPalette,
-        t,
-      ),
-      physicsPalette: SubjectPalette.lerp(
-        physicsPalette,
-        other.physicsPalette,
-        t,
-      ),
-      chemistryPalette: SubjectPalette.lerp(
-        chemistryPalette,
-        other.chemistryPalette,
-        t,
-      ),
-      biologyPalette: SubjectPalette.lerp(
-        biologyPalette,
-        other.biologyPalette,
-        t,
-      ),
     );
   }
 }

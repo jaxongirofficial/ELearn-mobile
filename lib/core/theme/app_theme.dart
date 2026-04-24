@@ -90,30 +90,6 @@ class AppTheme {
         subjectCardBorder: AppColors.primaryLight.withOpacity(0.12),
         subjectCardTitle: AppColors.dn900,
         subjectCardDescription: AppColors.dn500,
-        mathematicsPalette: const SubjectPalette(
-          start: Color(0xFF7D9303),
-          end: AppColors.primaryLight,
-          foreground: Colors.white,
-          shadow: Color(0x4DDBF934),
-        ),
-        physicsPalette: const SubjectPalette(
-          start: AppColors.secondaryDark,
-          end: AppColors.secondaryLight,
-          foreground: Colors.white,
-          shadow: Color(0x4D7B6AFE),
-        ),
-        chemistryPalette: const SubjectPalette(
-          start: Color(0xFF8A7208),
-          end: Color(0xFFF0D44E),
-          foreground: AppColors.n900,
-          shadow: Color(0x4DE0AF00),
-        ),
-        biologyPalette: const SubjectPalette(
-          start: Color(0xFF5C7408),
-          end: Color(0xFFA2C411),
-          foreground: Colors.white,
-          shadow: Color(0x4DA2C411),
-        ),
       ),
     ],
   );

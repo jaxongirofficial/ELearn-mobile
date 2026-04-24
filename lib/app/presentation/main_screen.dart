@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
     final theme = Theme.of(context);
     final colors = theme.extension<AppCustomColors>()!;
     final backgroundColor = theme.scaffoldBackgroundColor;
-    final selectedColor = colors.mathematicsPalette.start;
+    final selectedColor = theme.colorScheme.primary;
     final unselectedColor = colors.description;
 
     return Scaffold(

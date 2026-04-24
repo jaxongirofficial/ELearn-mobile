@@ -35,8 +35,8 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colors = theme.extension<AppCustomColors>()!;
-    final primary = colors.mathematicsPalette.start;
+    final primary = theme.colorScheme.primary;
+    final onPrimary = theme.colorScheme.onPrimary;
     final page = _pages[_pageIndex];
     final isFirst = _pageIndex == 0;
     final isLast = _pageIndex == _pages.length - 1;
@@ -97,7 +97,7 @@ class _TopicDetailPageState extends State<TopicDetailPage> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: primary,
-                      foregroundColor: Colors.white,
+                      foregroundColor: onPrimary,
                     ),
                     onPressed: () {
                       if (isLast) {

@@ -41,6 +41,33 @@ class _SubjectSectionBlock extends StatelessWidget {
 
   final SubjectSection section;
 
+  static const List<SubjectPalette> _topicPalettes = [
+    SubjectPalette(
+      start: Color(0xFF9DBE14),
+      end: Color(0xFFD7FF39),
+      foreground: Colors.white,
+      shadow: Color(0x66D7FF39),
+    ),
+    SubjectPalette(
+      start: Color(0xFF0DB9BF),
+      end: Color(0xFF2DE9E3),
+      foreground: Colors.white,
+      shadow: Color(0x662DE9E3),
+    ),
+    SubjectPalette(
+      start: Color(0xFF9053E8),
+      end: Color(0xFFB975FF),
+      foreground: Colors.white,
+      shadow: Color(0x66B975FF),
+    ),
+    SubjectPalette(
+      start: Color(0xFFF0A11A),
+      end: Color(0xFFFFC13A),
+      foreground: Colors.white,
+      shadow: Color(0x66FFC13A),
+    ),
+  ];
+
   final List<String> images = [
     'assets/images/123.png',
     'assets/images/x2.png',
@@ -52,7 +79,6 @@ class _SubjectSectionBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.extension<AppCustomColors>()!;
-    final cardColors = _cardColorsFor(colors, section.type);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,12 +95,13 @@ class _SubjectSectionBlock extends StatelessWidget {
           ),
         ),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (var index = 0; index < section.topics.length; index++) ...[
               SubjectTopicCard(
                 title: section.topics[index].title,
                 subtitle: _subtitleFor(section.topics[index]),
-                cardColors: cardColors,
+                cardColors: _topicPalettes[index % _topicPalettes.length],
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     RouteNames.topicDetail,
@@ -90,19 +117,6 @@ class _SubjectSectionBlock extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  SubjectPalette _cardColorsFor(AppCustomColors colors, SubjectType type) {
-    switch (type) {
-      case SubjectType.mathematics:
-        return colors.mathematicsPalette;
-      case SubjectType.physics:
-        return colors.physicsPalette;
-      case SubjectType.chemistry:
-        return colors.chemistryPalette;
-      case SubjectType.biology:
-        return colors.biologyPalette;
-    }
   }
 
   String _subtitleFor(SubjectTopic topic) {
